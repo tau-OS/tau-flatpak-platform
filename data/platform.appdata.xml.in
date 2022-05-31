@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+  <id>co.tauos.Platform</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>tauOS App Platform</name>
+  <summary>Build Flatpak apps for tauOS</summary>
+  <description>
+    <p>The Flatpak platform for tauOS and Catalogue.</p>
+  </description>
+  <releases>
+    <release version="1.0.0" date="2022-08-01" urgency="medium">
+      <description>
+        <p>Initial Release</p>
+      </description>
+    </release>
+  </releases>
+  <developer_name>Fyra Labs</developer_name>
+  <url type="homepage">https://tauos.co</url>
+  <url type="bugtracker">https://github.com/tau-OS/tau-flatpak-platform/issues</url>
+</component>
