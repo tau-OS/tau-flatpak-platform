@@ -95,6 +95,17 @@
             ]
         },
         {
+            "name": "manrope-fonts",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/tau-OS/manrope-fonts.git",
+                    "tag": "1.0.0"
+                }
+            ]
+        },
+        {
             "name": "libhelium",
             "buildsystem": "meson",
             "sources": [
