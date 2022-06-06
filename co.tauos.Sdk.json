@@ -76,7 +76,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/tau-OS/tau-helium.git",
-                    "tag": "1.2.3"
+                    "branch": "main"
                 }
             ],
             "modules": [
@@ -91,17 +91,20 @@
                       "sha256" : "6e893c09e863e74a28b77b809cf63a99b2d14724611858d8f3e54910e1a069d8"
                     }
                   ]
-                },
+                }
             ]
         },
         {
             "name": "manrope-fonts",
-            "buildsystem": "meson",
+            "buildsystem": "simple",
+            "build-commands" : [
+                "install -d ${FLATPAK_DEST}/fonts/OTF",
+                "install -D -m755 fonts/otf/*.otf ${FLATPAK_DEST}/fonts/OTF/"
+            ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/manrope-fonts.git",
-                    "tag": "1.0.0"
+                    "type" : "archive",
+                     "url" : "https://manropefont.com/manrope.zip"
                 }
             ]
         },
