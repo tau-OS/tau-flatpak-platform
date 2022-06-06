@@ -98,8 +98,9 @@
             "name": "manrope-fonts",
             "buildsystem": "simple",
             "build-commands" : [
-                "install -d ${FLATPAK_DEST}/fonts/OTF",
-                "install -D -m755 fonts/otf/*.otf ${FLATPAK_DEST}/fonts/OTF/"
+                "install -d ${FLATPAK_DEST}/share/fonts/manrope",
+                "install -D -m755 otf/*.otf ${FLATPAK_DEST}/share/fonts/manrope/",
+                "fc-cache -f -v"
             ],
             "sources": [
                 {
