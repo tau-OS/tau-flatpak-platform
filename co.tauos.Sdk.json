@@ -121,19 +121,17 @@
             ]
         },
         {
-            "name" : "platform-settings",
+            "name" : "default-gtk-settings",
             "buildsystem" : "simple",
-            "modules": [
+            "sources" : [
                 {
-                    "name" : "default-gtk-settings",
-                    "buildsystem" : "simple",
-                    "sources" : [
-                        {
-                            "type": "git",
-                            "url": "https://github.com/tau-OS/tau-release.git"
-                        }
-                    ]
+                    "type": "git",
+                    "url": "https://github.com/tau-OS/tau-release.git",
+                    "branch": "main"
                 }
+            ],
+            "build-commands": [
+                "install -Dm644 org.gnome.desktop.gschema.override ${FLATPAK_DEST}/etc/gtk-4.0/settings.ini"
             ]
         },
         {
