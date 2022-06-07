@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: tau-OS/github-actions/.github/workflows/upload-flatpak.yml@main
+    uses: tau-OS/github-actions/.github/workflows/build-flatpak.yml@main
     with:
       manifest: "./co.tauos.Sdk.yml"
     secrets:
