@@ -1,0 +1,14 @@
+name: Upload
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: tau-OS/github-actions/.github/workflows/upload-flatpak.yml@main
+    with:
+      manifest: "./co.tauos.Sdk.yml"
+    secrets:
+      repoToken: ${{ secrets.FLATPAK_REPO_TOKEN }}
