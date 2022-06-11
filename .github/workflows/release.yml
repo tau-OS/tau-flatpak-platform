@@ -1,0 +1,88 @@
+name: Release-1.1
+
+on:
+  pull_request:
+    branches: main
+    types: closed
+
+jobs:
+  publish_platform:
+    name: Publish Platform
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+    if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
+
+    steps:
+      - name: Clean
+        uses: easimon/maximize-build-space@v5
+        with:
+          root-reserve-mb: 16000
+          swap-size-mb: 1024
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup
+        run: |
+          sudo apt update
+          sudo apt install -y ccache flatpak flatpak-builder gir1.2-ostree-1.0 python3-aiohttp python3-gi python3-tenacity xvfb zstd
+          sudo rm -rf /var/lib/{apt,dpkg,cache,log}/
+          curl https://raw.githubusercontent.com/flatpak/flat-manager/0.3.7/flat-manager-client > ./flat-manager-client
+          sudo mv ./flat-manager-client /usr/bin/flat-manager-client
+          sudo chown root: /usr/bin/flat-manager-client
+          sudo chmod +x /usr/bin/flat-manager-client
+          sudo flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ./.flatpak-builder
+          key: flatpak-builder-arm64-${{ github.sha }}
+          restore-keys: flatpak-builder-arm64-
+
+      - name: Build
+        env:
+          DISPLAY: "0:0"
+        run: |
+          sudo xvfb-run --auto-servernum flatpak-builder --default-branch="1.0" --disable-rofiles-fuse --keep-build-dirs --install-deps-from=flathub --ccache --repo=repo builddir ./co.tauos.Sdk.json
+      
+      - name: Fix Permissions
+        run: sudo chown -R runner:docker .
+
+      - name: Create Build
+        run: |
+            BUILD_ID=`flat-manager-client create https://catalogue.tauos.co stable`
+            echo "build_id=$BUILD_ID" >> $GITHUB_ENV
+        env:
+            REPO_TOKEN: ${{ secrets.repoToken }}
+
+      - name: Push Build
+        run: |
+            flat-manager-client push ${{ env.build_id }} ./repo
+        env:
+            REPO_TOKEN: ${{ secrets.repoToken }}
+      
+      - name: Commit Build
+        run: |
+            flat-manager-client commit --wait ${{ env.build_id }}
+        env:
+            REPO_TOKEN: ${{ secrets.repoToken }}
+      
+      - name: Publish Build
+        run: |
+            flat-manager-client publish --wait ${{ env.build_id }}
+        env:
+            REPO_TOKEN: ${{ secrets.repoToken }}
+
+      - name: Purge Build
+        if: ${{ always() && env.build_id }}
+        run: |
+            flat-manager-client purge ${{ env.build_id }}
+        env:
+            REPO_TOKEN: ${{ secrets.repoToken }}
