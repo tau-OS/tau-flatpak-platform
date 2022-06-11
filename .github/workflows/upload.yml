@@ -9,6 +9,6 @@ jobs:
   build:
     uses: tau-OS/github-actions/.github/workflows/build-flatpak.yml@main
     with:
-      manifest: "./co.tauos.Sdk.yml"
+      manifest: "./co.tauos.Sdk.json"
     secrets:
       repoToken: ${{ secrets.FLATPAK_REPO_TOKEN }}
