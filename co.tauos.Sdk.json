@@ -8,7 +8,7 @@
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
         "org.gnome.Sdk.Locale",
-	"org.gnome.Sdk.Docs"
+		"org.gnome.Sdk.Docs"
     ],
     "platform-extensions": [ "org.gnome.Platform.Locale"],
     "inherit-extensions": [
@@ -51,8 +51,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/tau-OS/tau-hydrogen.git",
-                    "tag": "1.0.0",
-		    "commit": "2348a204ba2083b386a127cb3b2bf579c8c666cb"
+                    "branch": "main"
                 }
             ],
             "modules": [
@@ -113,23 +112,23 @@
         {
             "name": "libhelium",
             "buildsystem": "meson",
-	    "config-opts": [
-		"-Dstylesheet=false",
-		"-Ddemo=false",
-		"-Ddocumentation=false",
-		"--wrap-mode=nodownload"
-	    ],
+	    	"config-opts": [
+				"-Dstylesheet=false",
+				"-Ddemo=false",
+				"-Ddocumentation=false",
+				"--wrap-mode=nodownload"
+	    	],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/tau-OS/libhelium.git",
-		    "commit": "59bd99490d047653f24f3bda9c6887d3a6cba34f"
+		    		"branch": "main"
                 },
-		{
+				{
                     "type": "git",
                     "url": "https://github.com/tau-OS/tau-helium.git",
                     "branch": "main",
-		    "dest": "./subprojects/tau-helium"
+		    		"dest": "./subprojects/tau-helium"
                 }
             ]
         },
