@@ -115,7 +115,8 @@
 	    	"config-opts": [
 				"-Dstylesheet=false",
 				"-Ddemo=false",
-				"-Ddocumentation=false"
+				"-Ddocumentation=false",
+				"--wrap-mode=nodownload"
 	    	],
             "sources": [
                 {
@@ -128,6 +129,12 @@
                     "url": "https://github.com/tau-OS/tau-helium.git",
                     "branch": "main",
 		    		"dest": "./subprojects/tau-helium"
+                },
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
+                    "branch": "main",
+		    		"dest": "./subprojects/blueprint-compiler"
                 }
             ]
         },
