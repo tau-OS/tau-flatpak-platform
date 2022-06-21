@@ -115,8 +115,7 @@
 	    	"config-opts": [
 				"-Dstylesheet=false",
 				"-Ddemo=false",
-				"-Ddocumentation=false",
-				"--wrap-mode=nodownload"
+				"-Ddocumentation=false"
 	    	],
             "sources": [
                 {
