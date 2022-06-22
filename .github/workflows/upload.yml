@@ -71,7 +71,7 @@ jobs:
         env:
           REPO_TOKEN: "${{ secrets.FLATPAK_REPO_TOKEN }}"
         run: |
-          BUILD_ID=`flat-manager-client create https://catalogue.tauos.co/ catalogue-unstable`
+          BUILD_ID=`flat-manager-client create https://catalogue.tauos.co/ unstable`
           echo "build_id=$BUILD_ID" >> $GITHUB_ENV
 
       - name: Push and Commit Build
