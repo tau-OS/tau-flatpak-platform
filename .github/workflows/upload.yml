@@ -62,7 +62,7 @@ jobs:
         env:
           DISPLAY: "0:0"
         run: |
-          sudo xvfb-run --auto-servernum flatpak-builder --arch=${{ matrix.configuration.architecture }} --default-branch=daily --disable-rofiles-fuse --keep-build-dirs --install-deps-from=flathub --ccache --repo=repo builddir ./co.tauos.Sdk.json
+          sudo xvfb-run --auto-servernum flatpak-builder --arch=${{ matrix.configuration.architecture }} --default-branch=daily --disable-rofiles-fuse --keep-build-dirs --install-deps-from=flathub --ccache --repo=catalogue builddir ./co.tauos.Sdk.json
 
       - name: Fix Permissions
         run: sudo chown -R runner:docker .
@@ -71,13 +71,13 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
         run: |
-          BUILD_ID=`flat-manager-client create https://repo.tauos.co/ catalogue`
+          BUILD_ID=`flat-manager-client create https://catalogue.tauos.co/ catalogue`
           echo "build_id=$BUILD_ID" >> $GITHUB_ENV
 
       - name: Push and Commit Build
         env:
           REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
-        run: flat-manager-client push --wait --commit ${{ env.build_id }} ./repo
+        run: flat-manager-client push --wait --commit ${{ env.build_id }} ./catalogue
 
       - name: Publish Build
         env:
