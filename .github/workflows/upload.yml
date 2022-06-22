@@ -69,23 +69,23 @@ jobs:
 
       - name: Create Build
         env:
-          REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
+          REPO_TOKEN: "${{ secrets.FLATPAK_REPO_TOKEN }}"
         run: |
-          BUILD_ID=`flat-manager-client create https://repo.tauos.co/catalogue catalogue`
+          BUILD_ID=`flat-manager-client create https://catalogue.tauos.co/ catalogue-unstable`
           echo "build_id=$BUILD_ID" >> $GITHUB_ENV
 
       - name: Push and Commit Build
         env:
-          REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
-        run: flat-manager-client push --wait --commit ${{ env.build_id }} ./catalogue
+          REPO_TOKEN: "${{ secrets.FLATPAK_REPO_TOKEN }}"
+        run: flat-manager-client push --wait --commit "${{ env.build_id }}" ./catalogue
 
       - name: Publish Build
         env:
-          REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
-        run: flat-manager-client publish --wait ${{ env.build_id }}
+          REPO_TOKEN: "${{ secrets.FLATPAK_REPO_TOKEN }}"
+        run: flat-manager-client publish --wait "${{ env.build_id }}"
 
       - name: Purge Build
         if: ${{ always() && env.build_id }}
         env:
-          REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
-        run: flat-manager-client purge ${{ env.build_id }}
+          REPO_TOKEN: "${{ secrets.FLATPAK_REPO_TOKEN }}"
+        run: flat-manager-client purge "${{ env.build_id }}"
