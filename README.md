@@ -1,6 +1,6 @@
 # tauOS Flatpak Platform
 
-The Flatpak Platform for tauOS apps
+The Flatpak Platform for tauOS apps.
 
 ## Publishing
 
