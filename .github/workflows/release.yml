@@ -53,7 +53,7 @@ jobs:
 
       - name: Create Build
         run: |
-            BUILD_ID=`flat-manager-client create https://repo.tauos.co/ catalogue`
+            BUILD_ID=`flat-manager-client create https://catalogue.tauos.co/ stable`
             echo "build_id=$BUILD_ID" >> $GITHUB_ENV
         env:
             REPO_TOKEN: ${{ secrets.FLATPAK_REPO_TOKEN }}
