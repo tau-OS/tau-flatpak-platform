@@ -1,9 +1,6 @@
 name: Release
 
 on:
-  pull_request:
-    branches: main
-    types: closed
   workflow_dispatch:
 
 jobs:
@@ -13,8 +10,6 @@ jobs:
 
     strategy:
       fail-fast: false
-
-    if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
 
     steps:
       - name: Clean
