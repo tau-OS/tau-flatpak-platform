@@ -14,8 +14,4 @@ branch is built frequently and is **not recommended for production**.
 
 ### Stable
 
-To release a new stable version of the platform, simply open up a PR and add the `Release` label to it. Once it is merged,
-a new stable `co.tauos.Platform` version `1.0` will be created and published.
-
-> **NOTE** If you want to change the version, like release `co.tauos.Platform` version `2`, you will need to make
-> changes in the `release.yml` GitHub action.
+To release a new stable version of the platform, simply run the Release CI.
