@@ -149,9 +149,7 @@
             "name": "libbismuth",
             "buildsystem": "meson",
 	    	"config-opts": [
-				"-Dvapi=true",
-				"-Dintrospection=enabled",
-				"--wrap-mode=nodownload"
+				"-Dvapi=true"
 	    	],
             "sources": [
                 {
