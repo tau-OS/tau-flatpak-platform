@@ -3,7 +3,7 @@
     "id": "co.tauos.Sdk",
     "id-platform": "co.tauos.Platform",
     "default-branch": "daily",
-    "runtime-version": "43",
+    "runtime-version": "42",
     "runtime": "org.gnome.Platform",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
@@ -149,13 +149,15 @@
             "name": "libbismuth",
             "buildsystem": "meson",
 	    	"config-opts": [
-				"-Dvapi=true"
+			    "-Dvapi=true",
+			    "-Dintrospection=enabled",
+			    "--wrap-mode=nodownload"
 	    	],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/tau-OS/libbismuth.git",
-		    "branch": "main"
+		            "branch": "main"
                 }
             ]
         },
