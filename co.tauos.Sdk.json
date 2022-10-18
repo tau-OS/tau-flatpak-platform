@@ -145,6 +145,22 @@
                 }
             ]
         },
+	    {
+            "name": "libbismuth",
+            "buildsystem": "meson",
+	    	"config-opts": [
+				"-Dvapi=true",
+				"-Dintrospection=true",
+				"--wrap-mode=nodownload"
+	    	],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/tau-OS/libbismuth.git",
+		    "branch": "main"
+                }
+            ]
+        },
         {
             "name" : "default-gtk-settings",
             "buildsystem" : "simple",
