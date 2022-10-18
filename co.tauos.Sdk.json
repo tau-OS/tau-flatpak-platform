@@ -150,7 +150,7 @@
             "buildsystem": "meson",
 	    	"config-opts": [
 				"-Dvapi=true",
-				"-Dintrospection=true",
+				"-Dintrospection=enabled",
 				"--wrap-mode=nodownload"
 	    	],
             "sources": [
