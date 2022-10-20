@@ -3,7 +3,7 @@
     "id": "co.tauos.Sdk",
     "id-platform": "co.tauos.Platform",
     "default-branch": "daily",
-    "runtime-version": "42",
+    "runtime-version": "43",
     "runtime": "org.gnome.Platform",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
