@@ -133,6 +133,11 @@
                 },
 				{
                     "type": "git",
+                    "url": "https://github.com/tau-OS/libbismuth.git",
+		    		"branch": "main"
+                },
+				{
+                    "type": "git",
                     "url": "https://github.com/tau-OS/tau-helium.git",
                     "branch": "main",
 		    		"dest": "./subprojects/tau-helium"
