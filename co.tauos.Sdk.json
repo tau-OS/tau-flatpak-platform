@@ -135,6 +135,7 @@
                     "type": "git",
                     "url": "https://github.com/tau-OS/libbismuth.git",
 		    		"branch": "main"
+					"dest": "./subprojects/libbismuth"
                 },
 				{
                     "type": "git",
