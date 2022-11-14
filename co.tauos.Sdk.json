@@ -16,8 +16,7 @@
     "org.freedesktop.Platform.openh264"
   ],
   "inherit-sdk-extensions": [
-    "org.freedesktop.Sdk.Extension",
-    "org.freedesktop.Sdk.Extension.vala"
+    "org.freedesktop.Sdk.Extension"
   ],
   "finish-args": [
     "--env=ALSA_CONFIG_DIR=/usr/share/alsa",
