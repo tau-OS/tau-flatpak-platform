@@ -1,195 +1,193 @@
 {
-    "build-runtime": true,
-    "id": "co.tauos.Sdk",
-    "id-platform": "co.tauos.Platform",
-    "default-branch": "daily",
-    "runtime-version": "43",
-    "runtime": "org.gnome.Platform",
-    "sdk": "org.gnome.Sdk",
-    "sdk-extensions": [
-        "org.gnome.Sdk.Locale",
-		"org.gnome.Sdk.Docs"
-    ],
-    "platform-extensions": [ "org.gnome.Platform.Locale"],
-    "inherit-extensions": [
-        "org.freedesktop.Platform.GL",
-        "org.freedesktop.Platform.VAAPI.Intel",
-        "org.freedesktop.Platform.Timezones",
-        "org.freedesktop.Platform.GStreamer",
-        "org.freedesktop.Platform.openh264"
-    ],
-    "inherit-sdk-extensions": [
-        "org.freedesktop.Sdk.Extension"
-    ],
-    "finish-args": [
-        "--env=ALSA_CONFIG_DIR=/usr/share/alsa",
-        "--env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa-flatpak.conf",
-        "--env=GI_TYPELIB_PATH=/app/lib/girepository-1.0",
-        "--env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/share",
-        "--sdk=co.tauos.Sdk//daily",
-        "--runtime=co.tauos.Platform//daily"
-    ],
-    "cleanup-platform": [
-        "/share/runtime/docs",
-        "/include",
-        "/share/aclocal",
-        "/share/pkgconfig",
-        "/lib/pkgconfig",
-        "/share/gir-1.0",
-        "/share/vala"
-    ],
-    "build-options" : {
-        "env": {
-            "PYTHON": "python3"
+  "build-runtime": true,
+  "id": "co.tauos.Sdk",
+  "id-platform": "co.tauos.Platform",
+  "default-branch": "daily",
+  "runtime-version": "43",
+  "runtime": "org.gnome.Platform",
+  "sdk": "org.gnome.Sdk",
+  "sdk-extensions": ["org.gnome.Sdk.Locale", "org.gnome.Sdk.Docs"],
+  "platform-extensions": ["org.gnome.Platform.Locale"],
+  "inherit-extensions": [
+    "org.freedesktop.Platform.GL",
+    "org.freedesktop.Platform.VAAPI.Intel",
+    "org.freedesktop.Platform.Timezones",
+    "org.freedesktop.Platform.GStreamer",
+    "org.freedesktop.Platform.openh264"
+  ],
+  "inherit-sdk-extensions": [
+    "org.freedesktop.Sdk.Extension",
+    "org.freedesktop.Sdk.Extension.vala"
+  ],
+  "finish-args": [
+    "--env=ALSA_CONFIG_DIR=/usr/share/alsa",
+    "--env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa-flatpak.conf",
+    "--env=GI_TYPELIB_PATH=/app/lib/girepository-1.0",
+    "--env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/share",
+    "--sdk=co.tauos.Sdk//daily",
+    "--runtime=co.tauos.Platform//daily"
+  ],
+  "cleanup-platform": [
+    "/share/runtime/docs",
+    "/include",
+    "/share/aclocal",
+    "/share/pkgconfig",
+    "/lib/pkgconfig",
+    "/share/gir-1.0",
+    "/share/vala"
+  ],
+  "build-options": {
+    "env": {
+      "PYTHON": "python3"
+    }
+  },
+  "modules": [
+    {
+      "name": "tau-hydrogen",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/tau-OS/tau-hydrogen.git",
+          "branch": "main"
         }
+      ],
+      "modules": [
+        {
+          "name": "xcursorgen",
+          "cleanup": ["*"],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://xorg.freedesktop.org/archive/individual/app/xcursorgen-1.0.7.tar.gz",
+              "sha256": "6bc32d4977ffd60c00583bfd217f1d1245ca54dafbfbbcdbf14f696f9487b83e"
+            }
+          ]
+        }
+      ]
     },
-    "modules": [
-         {
-            "name": "tau-hydrogen",
-            "buildsystem": "meson",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/tau-hydrogen.git",
-                    "branch": "main"
-                }
-            ],
-            "modules": [
-                {
-                    "name": "xcursorgen",
-                    "cleanup": [ "*" ],
-                    "sources": [
-                        {
-                            "type": "archive",
-                            "url": "https://xorg.freedesktop.org/archive/individual/app/xcursorgen-1.0.7.tar.gz",
-                            "sha256": "6bc32d4977ffd60c00583bfd217f1d1245ca54dafbfbbcdbf14f696f9487b83e"
-                        }
-                    ]
-                }
-            ]
-        },
+    {
+      "name": "stylesheet",
+      "buildsystem": "meson",
+      "sources": [
         {
-            "name": "stylesheet",
-            "buildsystem": "meson",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/tau-helium.git",
-                    "branch": "main"
-                }
-            ],
-            "modules": [
-                {
-                  "name" : "sass",
-                  "buildsystem" : "simple",
-                  "build-commands" : [ "install -D -m755 sass ${FLATPAK_DEST}/bin/sass" ],
-                  "sources" : [
-                    {
-                        "type" : "archive",
-                        "url" : "https://github.com/sass/dart-sass/releases/download/1.53.0/dart-sass-1.53.0-linux-x64.tar.gz",
-                        "sha256" : "317487ad4f7a58740c360c4a3cfc8774897cfb05c8d8a2fb70dbc3b1666864a2",
-                        "only-arches": ["x86_64"]
-                    },
-                    {
-                        "type" : "archive",
-                        "url" : "https://github.com/sass/dart-sass/releases/download/1.53.0/dart-sass-1.53.0-linux-arm64.tar.gz",
-                        "sha256" : "2fa925a5164b6e62c16120dc2019d344c631ac70758602bad368175a2a18d03a",
-                        "only-arches": ["aarch64"]
-                    }
-                  ]
-                }
-            ]
-        },
-        {
-            "name": "manrope-fonts",
-            "buildsystem": "simple",
-            "build-commands" : [
-                "install -d ${FLATPAK_DEST}/share/fonts/manrope",
-                "install -D -m755 otf/*.otf ${FLATPAK_DEST}/share/fonts/manrope/",
-                "fc-cache -f -v"
-            ],
-            "sources": [
-                {
-                    "type" : "archive",
-                    "url" : "https://manropefont.com/manrope.zip",
-                    "sha256": "55df46e6c66a7dce193f234001327d94f4bc9e972b8499d11ba9c2eefcc9f4d9"
-                }
-            ]
-        },
-        {
-            "name": "libhelium",
-            "buildsystem": "meson",
-	    	"config-opts": [
-				"-Dstylesheet=false",
-				"-Ddemo=false",
-				"-Ddocumentation=false",
-				"--wrap-mode=nodownload"
-	    	],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/libhelium.git",
-		    		"branch": "main"
-                },
-				{
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/libbismuth.git",
-		    		"branch": "main",
-					"dest": "./subprojects/libbismuth"
-                },
-				{
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/tau-helium.git",
-                    "branch": "main",
-		    		"dest": "./subprojects/tau-helium"
-                },
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-                    "branch": "main",
-		    		"dest": "./subprojects/blueprint-compiler"
-                }
-            ]
-        },
-	    {
-            "name": "libbismuth",
-            "buildsystem": "meson",
-	    	"config-opts": [
-			    "-Dvapi=true",
-			    "-Dintrospection=enabled",
-			    "--wrap-mode=nodownload"
-	    	],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/libbismuth.git",
-		            "branch": "main"
-                }
-            ]
-        },
-        {
-            "name" : "default-gtk-settings",
-            "buildsystem" : "simple",
-            "sources" : [
-                {
-                    "type": "git",
-                    "url": "https://github.com/tau-OS/tau-release.git",
-                    "branch": "main"
-                }
-            ],
-            "build-commands": [
-                "install -Dm644 org.gnome.desktop.gschema.override ${FLATPAK_DEST}/etc/gtk-4.0/settings.ini"
-            ]
-        },
-        {
-            "name" : "appdata",
-            "buildsystem" : "meson",
-            "sources" : [
-                {
-                    "type": "dir",
-                    "path": "."
-                }
-            ]
+          "type": "git",
+          "url": "https://github.com/tau-OS/tau-helium.git",
+          "branch": "main"
         }
-    ]
+      ],
+      "modules": [
+        {
+          "name": "sass",
+          "buildsystem": "simple",
+          "build-commands": ["install -D -m755 sass ${FLATPAK_DEST}/bin/sass"],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/sass/dart-sass/releases/download/1.53.0/dart-sass-1.53.0-linux-x64.tar.gz",
+              "sha256": "317487ad4f7a58740c360c4a3cfc8774897cfb05c8d8a2fb70dbc3b1666864a2",
+              "only-arches": ["x86_64"]
+            },
+            {
+              "type": "archive",
+              "url": "https://github.com/sass/dart-sass/releases/download/1.53.0/dart-sass-1.53.0-linux-arm64.tar.gz",
+              "sha256": "2fa925a5164b6e62c16120dc2019d344c631ac70758602bad368175a2a18d03a",
+              "only-arches": ["aarch64"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "manrope-fonts",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -d ${FLATPAK_DEST}/share/fonts/manrope",
+        "install -D -m755 otf/*.otf ${FLATPAK_DEST}/share/fonts/manrope/",
+        "fc-cache -f -v"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://manropefont.com/manrope.zip",
+          "sha256": "55df46e6c66a7dce193f234001327d94f4bc9e972b8499d11ba9c2eefcc9f4d9"
+        }
+      ]
+    },
+    {
+      "name": "libhelium",
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Dstylesheet=false",
+        "-Ddemo=false",
+        "-Ddocumentation=false",
+        "--wrap-mode=nodownload"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/tau-OS/libhelium.git",
+          "branch": "main"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/tau-OS/libbismuth.git",
+          "branch": "main",
+          "dest": "./subprojects/libbismuth"
+        },
+        {
+          "type": "git",
+          "url": "https://github.com/tau-OS/tau-helium.git",
+          "branch": "main",
+          "dest": "./subprojects/tau-helium"
+        },
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
+          "branch": "main",
+          "dest": "./subprojects/blueprint-compiler"
+        }
+      ]
+    },
+    {
+      "name": "libbismuth",
+      "buildsystem": "meson",
+      "config-opts": [
+        "-Dvapi=true",
+        "-Dintrospection=enabled",
+        "--wrap-mode=nodownload"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/tau-OS/libbismuth.git",
+          "branch": "main"
+        }
+      ]
+    },
+    {
+      "name": "default-gtk-settings",
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/tau-OS/tau-release.git",
+          "branch": "main"
+        }
+      ],
+      "build-commands": [
+        "install -Dm644 org.gnome.desktop.gschema.override ${FLATPAK_DEST}/etc/gtk-4.0/settings.ini"
+      ]
+    },
+    {
+      "name": "appdata",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "dir",
+          "path": "."
+        }
+      ]
+    }
+  ]
 }
