@@ -21,6 +21,11 @@ jobs:
       - name: Install deps
         run: |
           dnf -y install nodejs
+      - name: Set up QEMU
+        if: matrix.arch == 'aarch64'
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v4
         with:
           bundle: palette.flatpak
