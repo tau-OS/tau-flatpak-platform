@@ -32,7 +32,7 @@ jobs:
         with:
           platforms: arm64
       - name: Flatpak build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v4
+        uses: tau-OS/flatpak-github-actions/flatpak-builder@master
         with:
           bundle: out.flatpak
           manifest-path: co.tauos.Sdk.json
@@ -41,7 +41,7 @@ jobs:
           cache-key: flatpak-builder-${{ github.sha }}-${{ matrix.arch }}
 
       - name: Upload
-        uses: flatpak/flatpak-github-actions/flat-manager@v4
+        uses: tau-OS/flatpak-github-actions/flat-manager@master
         with:
           repository: unstable
           flat-manager-url: https://catalogue.tauos.co/
