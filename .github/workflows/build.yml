@@ -34,7 +34,7 @@ jobs:
       - name: Flatpak build
         uses: tau-OS/flatpak-github-actions/flatpak-builder@master
         with:
-          bundle: out.flatpak
+          build-bundle: false
           manifest-path: co.tauos.Sdk.json
           arch: ${{ matrix.arch }}
           branch: ${{ inputs.publish == 'true' && 'stable' || 'daily' }}
