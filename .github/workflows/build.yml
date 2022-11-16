@@ -1,4 +1,4 @@
-name: Nightly
+name: Build Platform
 
 on:
   schedule:
@@ -6,6 +6,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish a stable build"
+        required: true
+        type: boolean
 
 jobs:
   build:
@@ -26,9 +31,16 @@ jobs:
         uses: docker/setup-qemu-action@v2
         with:
           platforms: arm64
-      - uses: flatpak/flatpak-github-actions/flatpak-builder@v4
+      - name: Flatpak build
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v4
         with:
-          bundle: palette.flatpak
+          bundle: out.flatpak
           manifest-path: co.tauos.Sdk.json
-          cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.arch }}
+          branch: ${{ inputs.publish == 'true' && 'stable' || 'daily' }}
+      - name: Upload
+        uses: flatpak/flatpak-github-actions/flat-manager@v4
+        with:
+          repository: unstable
+          flat-manager-url: https://catalogue.tauos.co/
+          token: ${{ secrets.FLATPAK_REPO_TOKEN }}
