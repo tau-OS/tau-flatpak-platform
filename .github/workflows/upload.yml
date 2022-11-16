@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0 22 * * *"
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -16,8 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         configuration:
-          - {name: x86, platform: false, architecture: x86_64}
-          - {name: ARM, platform: arm64, architecture: aarch64}
+          - { name: x86, platform: false, architecture: x86_64 }
+          - { name: ARM, platform: arm64, architecture: aarch64 }
 
     steps:
       - name: Clean
@@ -25,9 +25,9 @@ jobs:
         with:
           root-reserve-mb: 16000
           swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
+          remove-dotnet: "true"
+          remove-android: "true"
+          remove-haskell: "true"
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,8 +55,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./.flatpak-builder
-          key: flatpak-builder-${{ matrix.configuration.name }}-${{ github.sha }}
-          restore-keys: flatpak-builder-${{ matrix.configuration.name }}-
+          key: flatpak-builder-upload-${{ matrix.configuration.name }}
 
       - name: Build
         env:
