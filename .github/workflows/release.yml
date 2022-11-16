@@ -48,7 +48,7 @@ jobs:
           sudo flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ./.flatpak-builder
           key: flatpak-builder-release-${{ matrix.configuration.name }}
