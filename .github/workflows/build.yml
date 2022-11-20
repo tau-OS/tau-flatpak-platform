@@ -43,6 +43,6 @@ jobs:
       - name: Upload
         uses: tau-OS/flatpak-github-actions/flat-manager@master
         with:
-          repository: unstable
+          repository: ${{ inputs.publish && 'stable' || 'unstable' }}
           flat-manager-url: https://catalogue.tauos.co/
           token: ${{ secrets.FLATPAK_REPO_TOKEN }}
