@@ -37,7 +37,7 @@ jobs:
           build-bundle: false
           manifest-path: co.tauos.Sdk.json
           arch: ${{ matrix.arch }}
-          branch: ${{ inputs.publish == 'true' && 'stable' || 'daily' }}
+          branch: ${{ inputs.publish && 'stable' || 'daily' }}
           cache: false
 
       - name: Upload
