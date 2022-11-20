@@ -38,7 +38,7 @@ jobs:
           manifest-path: co.tauos.Sdk.json
           arch: ${{ matrix.arch }}
           branch: ${{ inputs.publish == 'true' && 'stable' || 'daily' }}
-          cache-key: flatpak-builder-${{ github.sha }}-${{ matrix.arch }}
+          cache: false
 
       - name: Upload
         uses: tau-OS/flatpak-github-actions/flat-manager@master
