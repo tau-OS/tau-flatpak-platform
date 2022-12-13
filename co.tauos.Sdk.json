@@ -15,9 +15,7 @@
     "org.freedesktop.Platform.GStreamer",
     "org.freedesktop.Platform.openh264"
   ],
-  "inherit-sdk-extensions": [
-    "org.freedesktop.Sdk.Extension"
-  ],
+  "inherit-sdk-extensions": ["org.freedesktop.Sdk.Extension"],
   "finish-args": [
     "--env=ALSA_CONFIG_DIR=/usr/share/alsa",
     "--env=ALSA_CONFIG_PATH=/usr/share/alsa/alsa-flatpak.conf",
@@ -185,6 +183,17 @@
         {
           "type": "dir",
           "path": "."
+        }
+      ]
+    },
+    {
+      "name": "blueprint-compiler",
+      "buildsystem": "meson",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+          "tag": "v0.6.0"
         }
       ]
     }
