@@ -82,7 +82,7 @@
             {
               "type": "archive",
               "url": "https://github.com/sass/dart-sass/releases/download/1.53.0/dart-sass-1.53.0-linux-x64.tar.gz",
-              "sha256": "317487ad4f7a58740c360c4a3cfc8774897cfb05c8d8a2fb70dbc3b1666864a2",
+              "sha256": "c9d819e5e42c939c80b7b19f6142574a6c899425dae1f353b45cb98ee6565174",
               "only-arches": ["x86_64"]
             },
             {
