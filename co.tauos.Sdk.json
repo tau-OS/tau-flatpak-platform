@@ -173,7 +173,7 @@
         }
       ],
       "build-commands": [
-        "install -Dm644 org.gnome.desktop.gschema.override ${FLATPAK_DEST}/etc/gtk-4.0/settings.ini"
+        "install -Dm644 gtk/settings.ini ${FLATPAK_DEST}/etc/gtk-4.0/settings.ini"
       ]
     },
     {
