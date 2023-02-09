@@ -35,7 +35,7 @@ jobs:
         uses: tau-OS/flatpak-github-actions/flatpak-builder@master
         with:
           build-bundle: false
-          manifest-path: co.tauos.Sdk.json
+          manifest-path: com.fyralabs.Sdk.json
           arch: ${{ matrix.arch }}
           branch: ${{ inputs.publish && 'stable' || 'daily' }}
           cache: false

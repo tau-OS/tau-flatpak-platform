@@ -1,5 +1,5 @@
 project(
-    'co.tauos.Platform',
+    'com.fyralabs.Platform',
     version: '1.0'
 )
 
