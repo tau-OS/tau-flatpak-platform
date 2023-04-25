@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-43
+      image: bilelmoussaoui/flatpak-github-actions:gnome-44
       options: --privileged
     strategy:
       matrix:
@@ -32,17 +32,17 @@ jobs:
         with:
           platforms: arm64
       - name: Flatpak build
-        uses: tau-OS/flatpak-github-actions/flatpak-builder@master
+        uses: flatpak/flatpak-github-actions/flatpak-builder@master
         with:
           build-bundle: false
           manifest-path: com.fyralabs.Sdk.json
           arch: ${{ matrix.arch }}
-          branch: ${{ inputs.publish && 'stable' || 'daily' }}
+          branch: ${{ inputs.publish && 'stable' || 'nightly' }}
           cache: false
 
       - name: Upload
-        uses: tau-OS/flatpak-github-actions/flat-manager@master
+        uses: flatpak/flatpak-github-actions/flat-manager@master
         with:
           repository: ${{ inputs.publish && 'stable' || 'unstable' }}
-          flat-manager-url: https://catalogue.tauos.co/
+          flat-manager-url: https://manager.flatpak.fyralabs.com/
           token: ${{ secrets.FLATPAK_REPO_TOKEN }}
