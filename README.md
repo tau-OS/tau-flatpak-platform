@@ -7,9 +7,9 @@ The Flatpak Platform for tauOS apps.
 This repository has CI/CD set up. Building and publishing is handled automatically with the help of some amazing GitHub
 actions, and takes no human interaction.
 
-### Daily
+### Nightly
 
-Every push to the `main` branch will start a build and publish it to our repository under the `daily` branch. This
+Every push to the `main` branch will start a build and publish it to our repository under the `nightly` branch. This
 branch is built frequently and is **not recommended for production**.
 
 ### Stable
