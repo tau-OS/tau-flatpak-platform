@@ -32,7 +32,7 @@ jobs:
         with:
           platforms: arm64
       - name: Flatpak build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@master
+        uses: flatpak/flatpak-github-actions@v2
         with:
           build-bundle: false
           manifest-path: com.fyralabs.Sdk.json
@@ -41,7 +41,7 @@ jobs:
           cache: false
 
       - name: Upload
-        uses: flatpak/flatpak-github-actions/flat-manager@master
+        uses: flatpak/flatpak-github-actions@v2
         with:
           repository: ${{ inputs.publish && 'stable' || 'unstable' }}
           flat-manager-url: https://manager.flatpak.fyralabs.com/
