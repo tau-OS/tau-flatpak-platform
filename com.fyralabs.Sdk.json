@@ -117,7 +117,8 @@
       "config-opts": [
         "-Dstylesheet=false",
         "-Ddemo=false",
-        "-Ddocumentation=false",
+        "-Dvaladoc=false",
+        "-Dgidoc=false",
         "--wrap-mode=nodownload"
       ],
       "sources": [
