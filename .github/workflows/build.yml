@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install dependencies
         run: |
-          dnf -y install nodejs docker flatpak xorg-x11-server-Xvfb flatpak-builder
+          dnf -y install nodejs docker flatpak xorg-x11-server-Xvfb flatpak-builder python-aiohttp
       - name: Install flat-manager-client
         run: |
           curl https://raw.githubusercontent.com/flatpak/flat-manager/master/flat-manager-client -o /usr/bin/flat-manager-client
