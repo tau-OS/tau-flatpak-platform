@@ -26,11 +26,6 @@ jobs:
       - name: Install deps
         run: |
           dnf -y install nodejs docker flatpak
-      - name: Set up QEMU
-        if: matrix.arch == 'aarch64'
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: arm64
       - name: Flatpak build
         uses: tau-OS/flatpak-github-actions/flatpak-builder@master
         with:
@@ -39,7 +34,6 @@ jobs:
           arch: ${{ matrix.arch }}
           branch: ${{ inputs.publish && 'stable' || 'nightly' }}
           cache: true
-
       - name: Upload
         uses: tau-OS/flatpak-github-actions/flat-manager@master
         with:
