@@ -38,7 +38,7 @@ jobs:
           manifest-path: com.fyralabs.Sdk.json
           arch: ${{ matrix.arch }}
           branch: ${{ inputs.publish && 'stable' || 'nightly' }}
-          cache: false
+          cache: true
 
       - name: Upload
         uses: tau-OS/flatpak-github-actions/flat-manager@master
