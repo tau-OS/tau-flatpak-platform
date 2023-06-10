@@ -16,16 +16,26 @@ jobs:
   build:
     runs-on: ${{ matrix.arch == 'aarch64' && 'ARM64' || 'ubuntu-latest' }}
     container:
-      image: bilelmoussaoui/flatpak-github-actions:gnome-44
+      image: fedora:38
       options: --privileged
     strategy:
       matrix:
         arch: [x86_64, aarch64]
     steps:
       - uses: actions/checkout@v3
-      - name: Install deps
+      - name: Install dependencies
         run: |
           dnf -y install nodejs docker flatpak
+      - name: Install flat-manager-client
+        run: |
+          curl https://raw.githubusercontent.com/flatpak/flat-manager/master/flat-manager-client -o /usr/bin/flat-manager-client
+          chmod +x /usr/bin/flat-manager-client
+      - name: Setup Flathub
+        run: |
+          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+      - name: Install GNOME platform
+        run: flatpak install -y --noninteractive flathub org.gnome.Platform//44 org.gnome.Sdk//44
       - name: Flatpak build
         uses: tau-OS/flatpak-github-actions/flatpak-builder@master
         with:
