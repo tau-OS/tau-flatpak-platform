@@ -22,13 +22,13 @@ jobs:
       matrix:
         arch: [x86_64, aarch64]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Flathub
         run: |
           flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
           flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
       - name: Install GNOME platform
-        run: flatpak install -y --noninteractive flathub org.gnome.Platform//44 org.gnome.Sdk//44
+        run: flatpak install -y --noninteractive flathub org.gnome.Platform//46 org.gnome.Sdk//46
       - name: Flatpak build
         uses: tau-OS/flatpak-github-actions/flatpak-builder@master
         with:
