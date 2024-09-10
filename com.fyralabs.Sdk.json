@@ -100,23 +100,6 @@
       ]
     },
     {
-      "name": "manrope-fonts",
-      "buildsystem": "simple",
-      "build-commands": [
-        "install -d ${FLATPAK_DEST}/share/fonts/manrope",
-        "install -D -m755 static/*.woff2 ${FLATPAK_DEST}/share/fonts/manrope/",
-        "fc-cache -f -v"
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/FifthTry/manrope-font.git",
-          "branch": "main",
-          "commit": "e6d4061550aba183097ee959a3def1501c1b7509"
-        }
-      ]
-    },
-    {
       "name": "libhelium",
       "buildsystem": "meson",
       "config-opts": [
