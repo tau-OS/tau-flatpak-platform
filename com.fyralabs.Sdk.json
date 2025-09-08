@@ -3,7 +3,7 @@
   "id": "com.fyralabs.Sdk",
   "id-platform": "com.fyralabs.Platform",
   "default-branch": "nightly",
-  "runtime-version": "46",
+  "runtime-version": "48",
   "runtime": "org.gnome.Platform",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": ["org.gnome.Sdk.Locale", "org.gnome.Sdk.Docs"],
